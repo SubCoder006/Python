@@ -1,0 +1,101 @@
+Transaction ID,Date,Product Category,Product Name,Units Sold,Unit Price,Total Revenue,Region,Payment Method
+10001,2024-01-01,Books,Python Crash Course,1,963.11,963.11,Europe,Debit Card
+10002,2024-01-02,Electronics,Sony WH-1000XM5,10,54.33,543.3,South America,Debit Card
+10003,2024-01-03,Books,Atomic Habits,3,1199.5,3598.5,North America,Credit Card
+10004,2024-01-04,Home Appliances,Philips Air Fryer,2,759.66,1519.32,North America,Credit Card
+10005,2024-01-05,Clothing,Levi's 501 Jeans,4,532.4,2129.6,South America,UPI
+10006,2024-01-06,Electronics,Samsung Galaxy S23,8,333.2,2665.6,North America,PayPal
+10007,2024-01-07,Clothing,Adidas Sneakers,1,376.39,376.39,Asia,PayPal
+10008,2024-01-08,Beauty,Dove Shampoo,4,170.45,681.8,Europe,Debit Card
+10009,2024-01-09,Books,Deep Work,7,1572.92,11010.44,Australia,Debit Card
+10010,2024-01-10,Books,Python Crash Course,1,1019.54,1019.54,North America,PayPal
+10011,2024-01-11,Electronics,Sony WH-1000XM5,3,1311.52,3934.56,North America,Credit Card
+10012,2024-01-12,Beauty,Dove Shampoo,1,1427.67,1427.67,Europe,UPI
+10013,2024-01-13,Clothing,Adidas Sneakers,10,251.05,2510.5,North America,UPI
+10014,2024-01-14,Beauty,L'Oreal Serum,6,1246.02,7476.12,Europe,UPI
+10015,2024-01-15,Clothing,Nike Hoodie,6,1047.38,6284.28,Asia,Net Banking
+10016,2024-01-16,Clothing,Adidas Sneakers,6,1677.89,10067.34,Asia,Debit Card
+10017,2024-01-17,Clothing,Levi's 501 Jeans,3,1206.58,3619.74,South America,Net Banking
+10018,2024-01-18,Beauty,Nivea Lotion,3,1265.85,3797.55,North America,Net Banking
+10019,2024-01-19,Books,Python Crash Course,1,849.85,849.85,Europe,Net Banking
+10020,2024-01-20,Home Appliances,Philips Air Fryer,5,147.91,739.55,South America,Net Banking
+10021,2024-01-21,Home Appliances,Samsung Refrigerator,6,1298.9,7793.4,Asia,Net Banking
+10022,2024-01-22,Clothing,Nike Hoodie,7,737.56,5162.92,Europe,Debit Card
+10023,2024-01-23,Beauty,Nivea Lotion,4,1767.47,7069.88,South America,Net Banking
+10024,2024-01-24,Electronics,MacBook Air M2,8,698.24,5585.92,South America,Debit Card
+10025,2024-01-25,Clothing,Puma T-Shirt,10,549.04,5490.4,South America,Net Banking
+10026,2024-01-26,Books,The Alchemist,3,451.21,1353.63,Europe,PayPal
+10027,2024-01-27,Home Appliances,Samsung Refrigerator,10,599.37,5993.7,South America,UPI
+10028,2024-01-28,Books,Python Crash Course,7,896.85,6277.95,Europe,PayPal
+10029,2024-01-29,Beauty,Maybelline Lipstick,6,1985.73,11914.38,North America,UPI
+10030,2024-01-30,Home Appliances,Dyson V11 Vacuum,9,861.9,7757.1,South America,PayPal
+10031,2024-01-31,Electronics,iPhone 14 Pro,9,1299.06,11691.54,North America,UPI
+10032,2024-02-01,Clothing,Puma T-Shirt,8,218.03,1744.24,Australia,UPI
+10033,2024-02-02,Books,Deep Work,1,1770.4,1770.4,North America,Credit Card
+10034,2024-02-03,Home Appliances,Samsung Refrigerator,3,310.13,930.39,Europe,Net Banking
+10035,2024-02-04,Home Appliances,Samsung Refrigerator,8,1768.3,14146.4,Europe,Net Banking
+10036,2024-02-05,Home Appliances,Philips Air Fryer,8,1003.48,8027.84,Asia,PayPal
+10037,2024-02-06,Books,Atomic Habits,7,246.46,1725.22,Europe,Net Banking
+10038,2024-02-07,Books,Atomic Habits,10,1966.47,19664.7,Australia,Net Banking
+10039,2024-02-08,Clothing,Nike Hoodie,2,1597.38,3194.76,North America,Net Banking
+10040,2024-02-09,Home Appliances,Philips Air Fryer,8,1863.44,14907.52,South America,Net Banking
+10041,2024-02-10,Home Appliances,LG Washing Machine,3,476.97,1430.91,Asia,PayPal
+10042,2024-02-11,Home Appliances,Philips Air Fryer,9,1411.77,12705.93,Australia,Credit Card
+10043,2024-02-12,Home Appliances,Samsung Refrigerator,10,52.75,527.5,North America,PayPal
+10044,2024-02-13,Books,Atomic Habits,5,1748.86,8744.3,Europe,Net Banking
+10045,2024-02-14,Electronics,Samsung Galaxy S23,5,484.63,2423.15,South America,Debit Card
+10046,2024-02-15,Books,Atomic Habits,9,1206.37,10857.33,Asia,Net Banking
+10047,2024-02-16,Beauty,Nivea Lotion,7,1886.97,13208.79,Australia,PayPal
+10048,2024-02-17,Books,Deep Work,3,1760.73,5282.19,South America,Net Banking
+10049,2024-02-18,Home Appliances,Dyson V11 Vacuum,7,285.22,1996.54,Australia,Debit Card
+10050,2024-02-19,Home Appliances,LG Washing Machine,4,1328.86,5315.44,North America,Debit Card
+10051,2024-02-20,Clothing,Levi's 501 Jeans,7,798.02,5586.14,North America,Net Banking
+10052,2024-02-21,Books,The Alchemist,8,560.97,4487.76,North America,UPI
+10053,2024-02-22,Electronics,Samsung Galaxy S23,9,1014.71,9132.39,Australia,Debit Card
+10054,2024-02-23,Beauty,Maybelline Lipstick,5,155.38,776.9,Europe,Debit Card
+10055,2024-02-24,Home Appliances,LG Washing Machine,1,378.31,378.31,North America,Credit Card
+10056,2024-02-25,Home Appliances,Dyson V11 Vacuum,8,131.68,1053.44,South America,Net Banking
+10057,2024-02-26,Books,Atomic Habits,3,1241.78,3725.34,Europe,Credit Card
+10058,2024-02-27,Clothing,Puma T-Shirt,1,1808.16,1808.16,Asia,Debit Card
+10059,2024-02-28,Books,Atomic Habits,9,1868.23,16814.07,North America,UPI
+10060,2024-02-29,Clothing,Adidas Sneakers,2,1147.64,2295.28,Australia,UPI
+10061,2024-03-01,Electronics,Samsung Galaxy S23,3,1571.87,4715.61,Asia,PayPal
+10062,2024-03-02,Books,The Alchemist,3,85.05,255.15,South America,UPI
+10063,2024-03-03,Electronics,iPhone 14 Pro,10,1489.39,14893.9,Asia,PayPal
+10064,2024-03-04,Books,Atomic Habits,8,1696.56,13572.48,North America,UPI
+10065,2024-03-05,Home Appliances,Samsung Refrigerator,9,1489.05,13401.45,South America,Debit Card
+10066,2024-03-06,Clothing,Nike Hoodie,7,575.52,4028.64,Australia,PayPal
+10067,2024-03-07,Books,The Alchemist,6,778.73,4672.38,Asia,UPI
+10068,2024-03-08,Beauty,Nivea Lotion,6,670.21,4021.26,South America,PayPal
+10069,2024-03-09,Books,The Alchemist,9,959.8,8638.2,Australia,PayPal
+10070,2024-03-10,Clothing,Nike Hoodie,8,1769.36,14154.88,Australia,Net Banking
+10071,2024-03-11,Books,Python Crash Course,3,346.06,1038.18,Europe,Net Banking
+10072,2024-03-12,Beauty,Nivea Lotion,1,240.6,240.6,South America,UPI
+10073,2024-03-13,Clothing,Adidas Sneakers,4,1466.86,5867.44,Europe,PayPal
+10074,2024-03-14,Electronics,MacBook Air M2,9,888.28,7994.52,North America,UPI
+10075,2024-03-15,Books,Python Crash Course,1,1660.93,1660.93,Asia,Debit Card
+10076,2024-03-16,Clothing,Levi's 501 Jeans,6,286.48,1718.88,Australia,Net Banking
+10077,2024-03-17,Beauty,L'Oreal Serum,10,1070.08,10700.8,South America,Credit Card
+10078,2024-03-18,Clothing,Nike Hoodie,7,1879.08,13153.56,Asia,UPI
+10079,2024-03-19,Clothing,Adidas Sneakers,3,1380.96,4142.88,South America,Credit Card
+10080,2024-03-20,Electronics,MacBook Air M2,6,862.51,5175.06,Australia,Net Banking
+10081,2024-03-21,Beauty,Maybelline Lipstick,6,208.98,1253.88,Europe,Net Banking
+10082,2024-03-22,Clothing,Adidas Sneakers,6,1993.18,11959.08,Asia,Net Banking
+10083,2024-03-23,Books,Python Crash Course,10,910.57,9105.7,Europe,Credit Card
+10084,2024-03-24,Electronics,MacBook Air M2,5,444.74,2223.7,South America,Credit Card
+10085,2024-03-25,Beauty,Maybelline Lipstick,9,1086.37,9777.33,Australia,Net Banking
+10086,2024-03-26,Electronics,MacBook Air M2,4,279.01,1116.04,North America,Credit Card
+10087,2024-03-27,Beauty,Dove Shampoo,4,1287.43,5149.72,Australia,Net Banking
+10088,2024-03-28,Home Appliances,Samsung Refrigerator,2,1507.53,3015.06,Asia,Net Banking
+10089,2024-03-29,Home Appliances,Philips Air Fryer,8,61.07,488.56,Australia,Credit Card
+10090,2024-03-30,Electronics,Samsung Galaxy S23,8,1876.31,15010.48,South America,PayPal
+10091,2024-03-31,Beauty,Dove Shampoo,7,1758.25,12307.75,Asia,Credit Card
+10092,2024-04-01,Home Appliances,Philips Air Fryer,4,1751.52,7006.08,Australia,Debit Card
+10093,2024-04-02,Home Appliances,Dyson V11 Vacuum,2,1637.94,3275.88,Asia,Debit Card
+10094,2024-04-03,Electronics,Samsung Galaxy S23,8,1418.08,11344.64,Europe,UPI
+10095,2024-04-04,Beauty,Dove Shampoo,3,919.26,2757.78,South America,Net Banking
+10096,2024-04-05,Books,Deep Work,6,1110.63,6663.78,Europe,Net Banking
+10097,2024-04-06,Electronics,iPhone 14 Pro,7,255.39,1787.73,North America,PayPal
+10098,2024-04-07,Beauty,L'Oreal Serum,1,1405.84,1405.84,Australia,UPI
+10099,2024-04-08,Beauty,L'Oreal Serum,8,356.47,2851.76,Australia,PayPal
+10100,2024-04-09,Clothing,Nike Hoodie,6,208.02,1248.12,Australia,UPI
