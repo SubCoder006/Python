@@ -1,0 +1,5 @@
+DEBUG:root:This i s a Debug message.
+INFO:root:This i s a Info message.
+WARNING:root:This i s a Warning message.
+ERROR:root:This i s a Error message.
+CRITICAL:root:This i s a Critical message.
