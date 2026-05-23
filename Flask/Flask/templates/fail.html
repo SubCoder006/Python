@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fail - Need Improvement</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+            min-height: 100vh;
+            padding: 20px;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            animation: slideUp 0.6s ease;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fail-header {
+            background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .fail-header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+        
+        .sad-icon {
+            font-size: 4em;
+            animation: shake 0.5s ease;
+        }
+        
+        .score-section {
+            padding: 40px;
+            text-align: center;
+            background: #f8f9fa;
+        }
+        
+        .average-score {
+            font-size: 3em;
+            font-weight: bold;
+            color: #dc3545;
+            margin: 20px 0;
+        }
+        
+        .grade-badge {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+            color: white;
+            border-radius: 50px;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        
+        .subjects-table {
+            padding: 40px;
+        }
+        
+        .subjects-table h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th {
+            background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:hover {
+            background: #f5f5f5;
+        }
+        
+        .percentage-bar {
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 30px;
+        }
+        
+        .bar-fill-fail {
+            background: linear-gradient(90deg, #eb3349, #f45c43);
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            transition: width 1s ease;
+        }
+        
+        .button-group {
+            padding: 0 40px 40px 40px;
+            display: flex;
+            gap: 15px;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+        
+        .improvement-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 20px 40px;
+            border-radius: 10px;
+        }
+        
+        .improvement-box h3 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        
+        .improvement-box ul {
+            margin-left: 20px;
+            color: #856404;
+        }
+        
+        .improvement-box li {
+            margin: 8px 0;
+        }
+        
+        .encouragement {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 20px 40px;
+            border-radius: 10px;
+        }
+        
+        footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        @media (max-width: 600px) {
+            .fail-header h1 {
+                font-size: 1.8em;
+            }
+            
+            .average-score {
+                font-size: 2em;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            th, td {
+                padding: 8px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="fail-header">
+            <div class="sad-icon">😔</div>
+            <h1>Need Improvement</h1>
+            <p>Unfortunately, you did not meet the passing criteria</p>
+        </div>
+        
+        <div class="score-section">
+            <h2>Your Performance Summary</h2>
+            <div class="average-score">
+                Average Score: {{ "%.2f"|format(results) }}%
+            </div>
+            <div class="grade-badge">
+                {% if results >= 30 %}
+                    GRADE: D (Needs Improvement)
+                {% elif results >= 20 %}
+                    GRADE: E (Poor)
+                {% else %}
+                    GRADE: F (Very Poor)
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="subjects-table">
+            <h2>📊 Subject-wise Marks Breakdown</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Marks Obtained</th>
+                        <th>Max Marks</th>
+                        <th>Percentage</th>
+                        <th>Visual Representation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>📐 Mathematics</td>
+                        <td>{{ "%.2f"|format(subjects.maths) }}</td>
+                        <td>100</td>
+                        <td>{{ "%.1f"|format((subjects.maths/100)*100) }}%</td>
+                        <td>
+                            <div class="percentage-bar">
+                                <div class="bar-fill-fail" style="width: {{ (subjects.maths/100)*100 }}%">
+                                    {{ "%.0f"|format((subjects.maths/100)*100) }}%
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>📊 Data Science</td>
+                        <td>{{ "%.2f"|format(subjects.data_science) }}</td>
+                        <td>100</td>
+                        <td>{{ "%.1f"|format((subjects.data_science/100)*100) }}%</td>
+                        <td>
+                            <div class="percentage-bar">
+                                <div class="bar-fill-fail" style="width: {{ (subjects.data_science/100)*100 }}%">
+                                    {{ "%.0f"|format((subjects.data_science/100)*100) }}%
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>💻 COA</td>
+                        <td>{{ "%.2f"|format(subjects.coa) }}</td>
+                        <td>100</td>
+                        <td>{{ "%.1f"|format((subjects.coa/100)*100) }}%</td>
+                        <td>
+                            <div class="percentage-bar">
+                                <div class="bar-fill-fail" style="width: {{ (subjects.coa/100)*100 }}%">
+                                    {{ "%.0f"|format((subjects.coa/100)*100) }}%
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>⚙️ Microprocessors</td>
+                        <td>{{ "%.2f"|format(subjects.microprocessors) }}</td>
+                        <td>100</td>
+                        <td>{{ "%.1f"|format((subjects.microprocessors/100)*100) }}%</td>
+                        <td>
+                            <div class="percentage-bar">
+                                <div class="bar-fill-fail" style

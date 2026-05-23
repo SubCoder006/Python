@@ -1,0 +1,100 @@
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f0f0f0;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            display: inline-block;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            min-width: 400px;
+        }
+        h1 {
+            color: #333;
+        }
+        .grade-f {
+            color: #dc3545;
+            font-weight: bold;
+            background-color: #f8d7da;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .grade-d {
+            color: #fd7e14;
+            font-weight: bold;
+            background-color: #fff3cd;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .grade-b {
+            color: #856404;
+            font-weight: bold;
+            background-color: #fff3cd;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .grade-a {
+            color: #155724;
+            font-weight: bold;
+            background-color: #d4edda;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .grade-a-plus {
+            color: #0c5460;
+            font-weight: bold;
+            background-color: #d1ecf1;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .marks {
+            font-size: 24px;
+            font-weight: bold;
+            color: #0066cc;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>📊 Report Card</h1>
+        <h3>Based on your marks - {{results}}</h3>
+        
+        <div class="marks">
+            Score: {{results}}%
+        </div>
+        
+        {% if results >= 80 and results <= 100 %}
+            <div class="grade-a-plus">
+                <h4>🌟 EXCELLENT! Outstanding performance! 🌟</h4>
+                <p>Grade: A | You have mastered the subject brilliantly!</p>
+            </div>
+        {% elif results >= 60 and results < 80 %}
+            <div class="grade-a">
+                <h4>✅ You have passed with flying colours! 🎉</h4>
+                <p>Grade: B | Very good performance! Keep it up!</p>
+            </div>
+        {% elif results >= 40 and results < 60 %}
+            <div class="grade-b">
+                <h4>⚠️ You have passed, but need improvement! 📚</h4>
+                <p>Grade: C | Work harder to achieve better results!</p>
+            </div>
+        {% elif results >= 0 and results < 40 %}
+            <div class="grade-f">
+                <h4>❌ Sorry, you have failed! 💪</h4>
+                <p>Grade: D | Need significant improvement. Don't give up!</p>
+            </div>
+        {% else %}
+            <div class="grade-f">
+                <h4>❌ Invalid marks! Please enter marks between 0-100</h4>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
