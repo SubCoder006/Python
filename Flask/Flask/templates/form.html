@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Smart Contact Form | POST Request Handler</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: linear-gradient(145deg, #b4d9f1 0%, #7bb3cc 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem 1rem;
+    }
+
+    /* main card container */
+    .form-card {
+      max-width: 700px;
+      width: 100%;
+      background: #ffffff;
+      border-radius: 32px;
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.25), 0 1px 3px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+      transition: all 0.2s ease;
+    }
+
+    /* header area */
+    .form-header {
+      background: #1f4e6e;
+      padding: 1.4rem 2rem;
+      color: white;
+    }
+
+    .form-header h1 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      margin-bottom: 0.25rem;
+    }
+
+    .form-header p {
+      font-size: 0.9rem;
+      opacity: 0.85;
+      margin-top: 0.3rem;
+    }
+
+    /* form body */
+    .form-body {
+      padding: 2rem 2rem 1.8rem;
+    }
+
+    .input-group {
+      margin-bottom: 1.5rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .input-group label {
+      font-weight: 600;
+      color: #1e2f3a;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .input-group label i {
+      font-weight: normal;
+      color: #2c7da0;
+    }
+
+    input, select, textarea {
+      font-family: inherit;
+      font-size: 0.95rem;
+      padding: 0.7rem 1rem;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 18px;
+      background: #fefefe;
+      transition: 0.2s;
+      outline: none;
+      width: 100%;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: #2c7da0;
+      box-shadow: 0 0 0 3px rgba(44, 125, 160, 0.2);
+      background-color: #fff;
+    }
+
+    /* multiple select specific */
+    select[multiple] {
+      padding: 0.5rem;
+      min-height: 100px;
+      border-radius: 16px;
+    }
+
+    option {
+      padding: 6px 8px;
+    }
+
+    /* hint text */
+    .field-hint {
+      font-size: 0.7rem;
+      color: #5e727d;
+      margin-top: 0.35rem;
+      margin-left: 0.5rem;
+    }
+
+    /* button row */
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.8rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .submit-btn {
+      background: #1f6392;
+      border: none;
+      padding: 0.85rem 2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 40px;
+      color: white;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .submit-btn:hover {
+      background: #0e4a6e;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 18px -8px rgba(0, 0, 0, 0.2);
+    }
+
+    .submit-btn:active {
+      transform: translateY(1px);
+    }
+
+    .reset-btn {
+      background: #eef2f6;
+      border: none;
+      padding: 0.85rem 1.6rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border-radius: 40px;
+      color: #2c3e4e;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .reset-btn:hover {
+      background: #e2e8f0;
+    }
+
+    /* response panel */
+    .response-panel {
+      margin-top: 1.8rem;
+      background: #f8fafc;
+      border-radius: 20px;
+      padding: 1rem 1.2rem;
+      border-left: 5px solid #2c7da0;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+      word-break: break-word;
+    }
+
+    .response-panel h4 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #1f4e6e;
+      margin-bottom: 0.5rem;
+    }
+
+    .response-content {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 0.8rem;
+      color: #1a2c38;
+      background: #ffffffd9;
+      padding: 0.6rem;
+      border-radius: 14px;
+      overflow-x: auto;
+    }
+
+    .error-message {
+      color: #c7254e;
+      background: #fff0f0;
+      border-left-color: #dc3545;
+    }
+
+    /* required star */
+    .required-star {
+      color: #dc5f6e;
+      font-size: 1rem;
+      margin-left: 3px;
+    }
+
+    hr {
+      margin: 0.8rem 0;
+      border: 0;
+      height: 1px;
+      background: linear-gradient(90deg, #cbd5e1, transparent);
+    }
+
+    @media (max-width: 550px) {
+      .form-body {
+        padding: 1.5rem;
+      }
+      .button-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .submit-btn, .reset-btn {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="form-card">
+  <div class="form-header">
+    <h1>📬 Contact & Preferences</h1>
+    <p>Fill the details below — secure POST submission with JSON payload</p>
+  </div>
+
+  <div class="form-body">
+    <!-- 
+      ✅ Proper POST request handler:
+      - We use JavaScript fetch() to send data as JSON (Content-Type: application/json)
+      - Submit button triggers async POST to a public test API (JSONPlaceholder) or custom endpoint
+      - Displays server-like response (simulated or real echo)
+      - Includes built-in validation and prevents default page reload
+    -->
+    <form id="userForm" novalidate>
+      <!-- First name & last name row (inline on desktop) -->
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 140px;">
+          <div class="input-group">
+            <label>👤 First name <span class="required-star">*</span></label>
+            <input type="text" id="fname" name="fname" placeholder="John" autocomplete="given-name" />
+            <span class="field-hint">Required, at least 1 character</span>
+          </div>
+        </div>
+        <div style="flex: 1; min-width: 140px;">
+          <div class="input-group">
+            <label>🧑‍🤝‍🧑 Last name <span class="required-star">*</span></label>
+            <input type="text" id="lname" name="lname" placeholder="Doe" autocomplete="family-name" />
+            <span class="field-hint">Required, letters & spaces only</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="input-group">
+        <label>📧 Email address <span class="required-star">*</span></label>
+        <input type="email" id="email" name="email" placeholder="name@example.com" autocomplete="email" />
+        <span class="field-hint">Valid email format required</span>
+      </div>
+
+      <!-- Single select -->
+      <div class="input-group">
+        <label>⭐ Priority level (single select)</label>
+        <select id="singleSelect" name="priority">
+          <option value="1">⭐ Low (1)</option>
+          <option value="2" selected>⭐⭐ Medium (2)</option>
+          <option value="3">⭐⭐⭐ High (3)</option>
+          <option value="4">⭐⭐⭐⭐ Critical (4)</option>
+          <option value="5">🔥 Urgent (5)</option>
+        </select>
+      </div>
+
+      <!-- Multiple select (array support) -->
+      <div class="input-group">
+        <label>🔘 Interest areas (multiple select)</label>
+        <select multiple id="multiSelect" name="interests">
+          <option value="tech">💻 Technology</option>
+          <option value="design">🎨 Design</option>
+          <option value="marketing">📈 Marketing</option>
+          <option value="support">🛠️ Support</option>
+          <option value="sales">💰 Sales</option>
+        </select>
+        <span class="field-hint">Hold Ctrl/Cmd to select multiple options</span>
+      </div>
+
+      <!-- Textarea -->
+      <div class="input-group">
+        <label>📝 Additional comments</label>
+        <textarea id="comment" name="comment" rows="3" placeholder="Tell us more about your request..."></textarea>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="button-row">
+        <button type="submit" id="submitPostBtn" class="submit-btn">
+          ✈️ Send POST Request
+        </button>
+        <button type="button" id="resetFormBtn" class="reset-btn">
+          🧹 Clear Form
+        </button>
+      </div>
+    </form>
+
+    <!-- Dynamic response display area for POST result -->
+    <div id="responseContainer" class="response-panel" style="display: none;">
+      <h4>📡 Server response</h4>
+      <div id="responseContent" class="response-content">—</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    // ---------- DOM elements ----------
+    const form = document.getElementById('userForm');
+    const fnameInput = document.getElementById('fname');
+    const lnameInput = document.getElementById('lname');
+    const emailInput = document.getElementById('email');
+    const singleSelect = document.getElementById('singleSelect');
+    const multiSelect = document.getElementById('multiSelect');
+    const commentArea = document.getElementById('comment');
+    const submitBtn = document.getElementById('submitPostBtn');
+    const resetBtn = document.getElementById('resetFormBtn');
+    const responseContainer = document.getElementById('responseContainer');
+    const responseContentDiv = document.getElementById('responseContent');
+
+    // Helper to show response (success or error)
+    function displayResponse(isError, message, details = null) {
+      responseContainer.style.display = 'block';
+      // remove previous error/success styling
+      responseContainer.classList.remove('error-message');
+      if (isError) {
+        responseContainer.classList.add('error-message');
+      } else {
+        responseContainer.classList.remove('error-message');
+      }
+
+      let html = '';
+      if (typeof message === 'string') {
+        html = `<strong>${isError ? '⚠️ Error' : '✅ Success'}</strong><br>${message}`;
+      } else {
+        html = `<strong>${isError ? '⚠️ Error' : '✅ Success'}</strong><br>${JSON.stringify(message, null, 2)}`;
+      }
+      
+      if (details) {
+        html += `<hr><small>🔍 Payload / details:</small><pre style="margin-top:8px; font-size:0.75rem;">${typeof details === 'string' ? details : JSON.stringify(details, null, 2)}</pre>`;
+      }
+      responseContentDiv.innerHTML = html;
+      
+      // optional: auto-scroll into view
+      responseContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    // clear response panel
+    function clearResponse() {
+      responseContainer.style.display = 'none';
+      responseContentDiv.innerHTML = '';
+      responseContainer.classList.remove('error-message');
+    }
+
+    // ----- validation logic -----
+    function validateForm() {
+      const errors = [];
+
+      const firstName = fnameInput.value.trim();
+      if (firstName === '') {
+        errors.push('First name is required.');
+      } else if (firstName.length < 1) {
+        errors.push('First name must contain at least 1 character.');
+      } else if (!/^[a-zA-Z\u00C0-\u024F\u1E00-\u1EFF\s\-\'\.]+$/.test(firstName) && firstName.length > 0) {
+        // relaxed but reasonable check – allow letters, spaces, hyphens, apostrophes
+        errors.push('First name should contain letters, spaces or basic punctuation only.');
+      }
+
+      const lastName = lnameInput.value.trim();
+      if (lastName === '') {
+        errors.push('Last name is required.');
+      } else if (lastName.length < 1) {
+        errors.push('Last name must contain at least 1 character.');
+      } else if (!/^[a-zA-Z\u00C0-\u024F\u1E00-\u1EFF\s\-\'\.]+$/.test(lastName) && lastName.length > 0) {
+        errors.push('Last name should contain letters, spaces or basic punctuation only.');
+      }
+
+      const email = emailInput.value.trim();
+      if (email === '') {
+        errors.push('Email address is required.');
+      } else {
+        const emailPattern = /^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/;
+        if (!emailPattern.test(email)) {
+          errors.push('Please enter a valid email address (e.g., name@domain.com).');
+        }
+      }
+
+      // optional: multiple select doesn't require min selection, but we keep optional
+      // but we enforce at least first & last & email.
+      return errors;
+    }
+
+    // collect data from form into plain object ready for POST JSON
+    function gatherFormData() {
+      // first/last/email
+      const firstName = fnameInput.value.trim();
+      const lastName = lnameInput.value.trim();
+      const email = emailInput.value.trim();
+      
+      // single select value
+      const priorityValue = singleSelect.value;
+      const priorityText = singleSelect.options[singleSelect.selectedIndex]?.text || priorityValue;
+      
+      // multiple select -> array of selected values
+      const selectedInterests = Array.from(multiSelect.selectedOptions).map(opt => opt.value);
+      
+      // textarea content
+      const comments = commentArea.value.trim();
+      
+      return {
+        firstName: firstName,
+        lastName: lastName,
+        fullName: `${firstName} ${lastName}`.trim(),
+        email: email,
+        priority: {
+          level: parseInt(priorityValue, 10),
+          label: priorityText
+        },
+        interests: selectedInterests,
+        additionalComments: comments || "",
+        submittedAt: new Date().toISOString()
+      };
+    }
+
+    // ----- perform POST request to a reliable test endpoint (echo/placeholder) -----
+    // We'll use JSONPlaceholder's posts endpoint (simulates POST and returns mock data with id)
+    // Alternatively, we can use https://httpbin.org/post for full echo. 
+    // Using httpbin.org/post -> returns the exact JSON we sent + headers, very suitable for demo.
+    // And it supports CORS, secure and reliable.
+    async function sendPostRequest(formDataObject) {
+      // endpoint that echoes request body (perfect for testing POST)
+      const POST_URL = 'https://httpbin.org/post';
+      
+      try {
+        const response = await fetch(POST_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(formDataObject)
+        });
+        
+        if (!response.ok) {
+          // if status is not 2xx
+          const errorText = await response.text();
+          throw new Error(`Server responded with ${response.status}: ${errorText.substring(0, 100)}`);
+        }
+        
+        const responseData = await response.json();
+        // httpbin returns the sent JSON inside 'json' property, also original data
+        // we can format for user-friendly display
+        return { success: true, data: responseData };
+      } catch (networkError) {
+        console.error('POST fetch error:', networkError);
+        return { success: false, error: networkError.message };
+      }
+    }
+
+    // MAIN SUBMIT HANDLER - async POST request
+    async function onSubmitHandler(event) {
+      event.preventDefault();   // prevent traditional form submit / page reload
+      clearResponse();          // hide previous response while submitting
+      
+      // run validation
+      const validationErrors = validateForm();
+      if (validationErrors.length > 0) {
+        const errorMessage = validationErrors.join(' · ');
+        displayResponse(true, `Validation failed: ${errorMessage}`, { errors: validationErrors });
+        // scroll to response
+        return;
+      }
+      
+      // gather data from all fields
+      const payload = gatherFormData();
+      
+      // show loading state on button
+      const originalButtonText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '⏳ Sending POST ...';
+      submitBtn.disabled = true;
+      
+      try {
+        // sending POST request with structured JSON
+        const result = await sendPostRequest(payload);
+        
+        if (result.success) {
+          // success: show pretty response, including echo data
+          const responsePayload = result.data;
+          // extract the json we sent from httpbin response
+          const echoedData = responsePayload.json;  // this is our original payload
+          const responseSummary = {
+            status: "OK",
+            received_by_echo_server: true,
+            echoed_payload: echoedData,
+            server_timestamp: responsePayload.origin ? new Date().toISOString() : null
+          };
+          displayResponse(
+            false, 
+            `POST request successful! Server accepted the data. Status: ${responsePayload.status ? responsePayload.status : '200 OK'}`,
+            responseSummary
+          );
+          // optional: you could reset a success flag, but keep form filled
+        } else {
+          // network / server error
+          displayResponse(true, `POST request failed: ${result.error}`, { attemptedPayload: payload });
+        }
+      } catch (unexpectedErr) {
+        displayResponse(true, `Unexpected error: ${unexpectedErr.message}`, { payload: payload });
+      } finally {
+        // restore button state
+        submitBtn.innerHTML = originalButtonText;
+        submitBtn.disabled = false;
+      }
+    }
+    
+    // Reset all fields and clear response area
+    function resetFormFields() {
+      fnameInput.value = '';
+      lnameInput.value = '';
+      emailInput.value = '';
+      singleSelect.value = '2';     // default medium
+      // clear multiple select selections
+      Array.from(multiSelect.options).forEach(opt => opt.selected = false);
+      commentArea.value = '';
+      clearResponse();
+      // also set focus to first field
+      fnameInput.focus();
+      // optional show subtle notification
+      const tempInfo = document.createElement('div');
+      tempInfo.style.position = 'fixed';
+      tempInfo.style.bottom = '20px';
+      tempInfo.style.left = '20px';
+      tempInfo.style.backgroundColor = '#1f4e6e';
+      tempInfo.style.color = 'white';
+      tempInfo.style.padding = '6px 12px';
+      tempInfo.style.borderRadius = '30px';
+      tempInfo.style.fontSize = '0.75rem';
+      tempInfo.innerText = 'Form cleared ✨';
+      document.body.appendChild(tempInfo);
+      setTimeout(() => tempInfo.remove(), 1800);
+    }
+    
+    // attach event listener to submit button (since we override form submit)
+    form.addEventListener('submit', onSubmitHandler);
+    resetBtn.addEventListener('click', resetFormFields);
+    
+    // Additional small enhancements: live email validation hint, not mandatory but nice
+    // ensure no double submission
+    // Also ensure that multiple select remains accessible.
+    // Pre-populate some demo placeholder for readability? Not needed but keeps example clean.
+    // Edge: If browser's autofill, respects our validation.
+    console.log("✅ Form ready — POST request with structured JSON payload");
+    
+    // (Optional) default sample data to demonstrate functionality? we can leave empty, 
+    // but maybe a tiny demo hint. Actually not needed. But we set cursor.
+    fnameInput.focus();
+  })();
+</script>
+</body>
+</html>
