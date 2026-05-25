@@ -371,6 +371,10 @@ A **histogram** is a bar chart that shows the **frequency distribution** of cont
 ## 11. Percentiles and Quartiles
 
 ### Percentile
+The **pecentile** is given by :
+$$\text{Percentile} = \frac{\text{Number of samples below x}}{n} \times (100)$$
+where **x** is the given number whose *percentile* is to be found.
+
 The **p-th percentile** is the value below which **p%** of the data falls.
 
 $$\text{Percentile Position} = \frac{p}{100} \times (n + 1)$$
