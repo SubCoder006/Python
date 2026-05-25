@@ -448,7 +448,10 @@ A compact summary of a dataset using **5 key values**:
 
 ### 13.1 Covariance
 
-Measures the **direction** of the linear relationship between two variables X and Y.
+**Covariance** measures how two variables **change together**.
+
+- If both **increase/decrease** together → covariance is **positive**.
+- If one **increases** while the other **decreases** → covariance is **negative**.
 
 **Population Covariance:**
 
@@ -470,15 +473,23 @@ $$\text{Cov}(X, Y) = \frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})}{n - 1}$
 
 ---
 
-### 13.2 Correlation (Pearson's r)
+## 13.2 Correlation (Pearson's r)
 
 Measures **both direction and strength** of the linear relationship, on a **standardized scale**.
 
-$$r = \frac{\text{Cov}(X, Y)}{\sigma_X \cdot \sigma_Y}$$
+### Formula
+
+$$
+r = \frac{\text{Cov}(X, Y)}{\sigma_X \cdot \sigma_Y}
+$$
 
 Or equivalently:
 
-$$r = \frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum(x_i - \bar{x})^2 \cdot \sum(y_i - \bar{y})^2}}$$
+$$
+r = \frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum(x_i - \bar{x})^2 \cdot \sum(y_i - \bar{y})^2}}
+$$
+
+---
 
 ### Interpreting Pearson's r
 
@@ -495,26 +506,91 @@ $$r = \frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum(x_i - \bar{
 
 ---
 
-### Difference: Covariance vs Correlation
+## 13.3 Spearman’s Rank Correlation (rₛ)
+
+Measures **direction and strength of a monotonic relationship** using **ranks instead of actual values**.
+
+### Formula (No tied ranks)
+
+$$
+r_s = 1 - \frac{6 \sum d_i^2}{n(n^2 - 1)}
+$$
+
+Or equivalently:
+
+$$
+r_s = \frac{\text{Cov}(R(x_i), R(y_i))}{\sigma_{R(x_i)} \cdot \sigma_{R(y_i)}}
+$$
+
+- **d<sub>i</sub>** = **R(x<sub>i</sub>)** - **R(y<sub>i</sub>)** : Difference between ranks  
+- **R(x<sub>i</sub>)** : Rank of X  
+- **R(y<sub>i</sub>)** : Rank of Y  
+- **n** : Number of observations    
+---
+
+### Definition (Easy)
+
+- Checks how well the **ranking/order** of two variables matches  
+- Works even when the relationship is **not linear**
+
+---
+
+### When to Use
+
+- Data is **not normally distributed**  
+- Relationship is **non-linear but monotonic**  
+- Data is **ordinal (ranked)**  
+
+---
+
+### Mini Real-Life Examples
+
+- Exam rank vs study hours rank  
+- Instagram followers rank vs engagement rank  
+- Customer ratings (1–5 stars) vs repeat purchases  
+
+---
+
+## Difference: Covariance vs Correlation
 
 | Feature | Covariance | Correlation |
 |---|---|---|
 | Range | (−∞, +∞) | [−1, +1] |
-| Units | Units of X × Y | Dimensionless (unitless) |
-| Scale sensitivity | Yes | No (standardized) |
+| Units | Units of X × Y | Dimensionless |
+| Scale sensitivity | Yes | No |
 | Interpretation | Direction only | Direction + Strength |
 | Easier to compare | ❌ | ✅ |
 
 ---
 
-### Key Caution
+## Difference: Pearson vs Spearman
+
+| Feature | Pearson (r) | Spearman (rₛ) |
+|---|---|---|
+| Relationship type | Linear | Monotonic |
+| Data used | Actual values | Ranks |
+| Sensitive to outliers | Yes | Less |
+| Assumption | Normal distribution preferred | No strict assumption |
+| Best for | Precise numeric data | Ranked / skewed data |
+
+---
+
+## Key Caution
 
 > **Correlation ≠ Causation**
->
-> Just because two variables are correlated does not mean one causes the other. A third hidden variable (confounding variable) may be responsible.
 
-> **Example:** Ice cream sales and drowning rates are positively correlated — both increase in summer. The real cause is **hot weather**, not ice cream!
+Two variables being correlated does **not** mean one causes the other.
 
+**Example:**  
+Ice cream sales and drowning rates increase together → due to **summer (hidden variable)**, not causation.
+
+---
+
+## Quick Intuition
+
+- **Covariance** → Direction only  
+- **Pearson** → Direction + Strength (linear)  
+- **Spearman** → Direction + Strength (ranking-based)
 ---
 
 ## 🔑 Quick Formula Reference
@@ -531,6 +607,7 @@ $$r = \frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum(x_i - \bar{
 | Lower Outlier Fence | Q1 − 1.5 × IQR |
 | Upper Outlier Fence | Q3 + 1.5 × IQR |
 | Pearson Correlation | r = Cov(X,Y) / (σX × σY) |
+| Spearman Correlation | rₛ = 1 − (6 Σdᵢ²) / (n(n²−1)) |
 | Sample Covariance | Cov = Σ(xᵢ−x̄)(yᵢ−ȳ) / (n−1) |
 
 ---
