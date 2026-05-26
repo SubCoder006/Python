@@ -83,7 +83,7 @@ fig.suptitle("Statistics — Visual Summary", fontsize=14, fontweight="bold")
 
 # Histogram
 axes[0,0].hist(scores, bins=8, color="steelblue", edgecolor="white")
-axes[0,0].axvline(mu, color="red",    linestyle="--", label=f"Mean={mu:.1f}")
+axes[0,0].axvline(mu, color="red", linestyle="--", label=f"Mean={mu:.1f}")
 axes[0,0].axvline(np.median(scores), color="orange", linestyle="--", label=f"Median={np.median(scores):.1f}")
 axes[0,0].set_title("Histogram"); axes[0,0].legend(fontsize=8)
 
@@ -121,8 +121,7 @@ axes[1,1].set_title("Empirical Rule"); axes[1,1].legend(fontsize=7)
 # Correlation scatter
 m, b = np.polyfit(study_hours, scores, 1)
 axes[1,2].scatter(study_hours, scores, color="steelblue", edgecolors="white", s=60)
-axes[1,2].plot(np.linspace(1,11,100), m*np.linspace(1,11,100)+b,
-               color="red", linewidth=2, label=f"r={r:.3f}")
+axes[1,2].plot(np.linspace(1,11,100), m*np.linspace(1,11,100)+b, color="red", linewidth=2, label=f"r={r:.3f}")
 axes[1,2].set_title("Correlation: Study Hours vs Score")
 axes[1,2].set_xlabel("Study Hours"); axes[1,2].legend(fontsize=8)
 
