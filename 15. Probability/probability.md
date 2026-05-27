@@ -175,8 +175,7 @@ plt.tight_layout(); plt.show()
 ---
 
 ### 1️⃣ Bernoulli Distribution
-
-**Models:** Single trial with two outcomes (success/failure)
+- Bernoulli distribution models a **random experiment** with two outcomes (**success/failure**)
 
 $$P(X = k) = p^k (1-p)^{1-k}, \quad k \in \{0, 1\}$$
 
