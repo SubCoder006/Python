@@ -195,7 +195,7 @@ n  = sample size
 | 0.05 | 1.645 | 1.96 |
 | 0.01 | 2.33 | 2.576 |
 
-**Decision:** |Z_calculated| > Z_critical → Reject H₀
+**Decision:** |Z_calculated| > Z_critical → Reject H₀ or **p-value < α**
 
 ---
 
